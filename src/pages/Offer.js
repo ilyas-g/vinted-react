@@ -30,10 +30,11 @@ const Offer = () => {
     return (<div className="page product">
         <p>Offer id : {offerId}</p>
         {isLoading === true ? (
+            // Object key object value
             <h1>En cours de chargement</h1>
         ) : (
             <>
-                <p>{data.product_description}</p>
+                <p><strong>{data.product_name}</strong> - {data.product_description}</p>
                 <h2>{data.product_details[0].MARQUE}</h2>
                 {data.product_details.map((detail, index) => {
                     return <p>MAAAAAAAAAAAAAAAAAAAAAAA {detail.MARQUE}</p>;
