@@ -35,7 +35,7 @@ export default function Home() {
                 <>
                     {data.offers.map((offer, index) => {
                         return (
-                            <p><Link to={`/offer/${offer._id}`}>{offer.product_name}</Link></p>
+                            <p key={index}><Link to={`/offer/${offer._id}`}>{offer.product_name}</Link></p>
                         );
                     })}
                 </>

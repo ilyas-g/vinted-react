@@ -1,7 +1,6 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
-// import Product from "./pages/Product";
 import Offer from "./pages/Offer";
 
 function App() {
@@ -19,10 +18,7 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/offer" element={<Offer />} /> */}
         <Route path="/offer/:offerId" element={<Offer />} />
-
-        {/* <Route path="/product/:id" element={<Product />} /> */}
       </Routes>
     </Router>
   );
