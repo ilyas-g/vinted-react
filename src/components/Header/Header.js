@@ -7,7 +7,7 @@ export default function Header() {
             <div className='container u-flexbox u-align-items-center u-fill-height'>
                 <div className='entete__content'>
                     <div className='entete__logo'>
-                        <a className="d-block" href=''><span>Header</span></a>
+                        <span className="d-block">Header</span>
                     </div>
                     <div className='searchBar'>
                         <form>
