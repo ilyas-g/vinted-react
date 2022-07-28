@@ -28,7 +28,6 @@ export default function Home() {
     return (
         <div>
             <h1>Home</h1>
-
             {isLoading === true ? (
                 <h1>En cours de chargement</h1>
             ) : (
