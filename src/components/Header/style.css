@@ -1,0 +1,103 @@
+.entete__main {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: aqua;
+}
+
+@media only screen and (min-width: 960px) {
+    .entete__main {
+        height: 52px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.entete__content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.entete__logo {
+    height: 44px;
+}
+
+.logo {
+    border-radius: inherit;
+    height: auto;
+    max-width: 100%;
+    outline: none;
+}
+
+@media only screen and (min-width: 960px) {
+
+    .entete__logo,
+    .entete__search {
+        margin-right: 48px;
+    }
+}
+
+.entete__search {
+    display: none;
+    width: 100%;
+}
+
+.entete__actions {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.entete__search,
+.entete__actions {
+    position: relative;
+    z-index: 100030;
+}
+
+@media only screen and (min-width: 960px) {
+
+    .entete__logo,
+    .entete__search {
+        margin-right: 48px;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .entete__search {
+        display: block;
+    }
+}
+
+.entete-bar_input {
+    align-items: center;
+    flex: 1;
+    padding: 0 11px;
+}
+
+.entete-bar_icon,
+.entete-bar_input,
+.entete-bar_prefix,
+.entete-bar_suffix {
+    display: flex;
+}
+
+.entete-bar_value {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background-color: transparent;
+    border: 0;
+    color: rgba(var(--greyscale-level-1), 1);
+    display: flex;
+    flex: 1;
+    font-family: Maison Neue;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    width: 100%;
+}
+
+.entete-bar_prefix,
+.entete-bar_suffix {
+    align-items: flex-end;
+}
