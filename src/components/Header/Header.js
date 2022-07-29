@@ -14,7 +14,7 @@ export default function Header() {
                             <div className='position-relative'>
                                 <div className='entete-bar_input'>
                                     <input className='bar_value' id="search_text" name="search_text" placeholder="Rechercher des articles" data-testid="search-text--input"
-                                        autocomplete="off" aria-labelledby="search-item" value="" />
+                                        autoComplete="off" aria-labelledby="search-item" value="" />
                                     <div className='entete-bar_suffix'></div>
                                 </div>
                             </div>

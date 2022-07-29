@@ -1,6 +1,6 @@
 // src/App.js
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Header from "./components/Header/Header";
+// import Header from "./components/Header/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import SignUp from "./pages/SignUp";
@@ -8,7 +8,7 @@ import SignUp from "./pages/SignUp";
 function App() {
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
       <nav>
         <ul>
           <li>
