@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 export default function SignUp() {
@@ -9,6 +11,8 @@ export default function SignUp() {
     const [newsletter, setNewsLetter] = useState(false);
 
     const [errorMessage, setErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     const handleChangeUsername = (event) => {
         setUsername(event.target.value);
@@ -40,7 +44,9 @@ export default function SignUp() {
                 newsletter: newsletter
             });
             console.log(response.data);
+            console.log(response.data.newsletter);
             alert("Merci pour votre message");
+            navigate("/");
 
         } catch (error) {
             console.log(error.message);
@@ -84,8 +90,6 @@ export default function SignUp() {
                     <div>
                         <input
                             type="checkbox"
-                            id="newsletter"
-                            name="newsletter"
                             value={newsletter}
                             onChange={handleChangeNewsLetter} />
                         <label htmlFor="newsletter">S'inscrire à la newsletter</label>
