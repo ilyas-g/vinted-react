@@ -26,6 +26,7 @@ const Header = ({ token, setUser }) => {
             )}
 
             <br />
+            <Link to="/publish">Vends tes articles</Link>
         </header>
     );
 };

@@ -1,16 +1,18 @@
-// src/App.js
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
-
-import Header from "./components/Header/Header";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Offer from "./pages/Offer";
-import SignUp from "./pages/SignUp";
-
+// import "./App.scss";
 import Cookies from "js-cookie";
 
-// JSON différent de form-data -> content type
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+//pages
+import Home from "./pages/Home";
+import Offer from "./pages/Offer";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Publish from "./pages/Publish";
+
+//components
+import Header from "./components/Header/Header";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -28,29 +30,25 @@ function App() {
     setToken(tokenToCheck);
   };
 
+  //connexion / inscription
+  // setUser("387D3G3UYGUY3GUEGUYZEGGYUGUYGUYGUYGD");
+
+  //déconnexion
+  // setUser(null)
+
   return (
-    <Router>
-      <Header token={token} setUser={setUser} />
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/offer/:offerId" element={<Offer />} />
-        <Route path="/signup" element={<SignUp />} setUser={setUser} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
+    <div className="container">
+      <Router>
+        <Header token={token} setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/offer/:offerId" element={<Offer />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp setUser={setUser} />} />
+          <Route path="/publish" element={<Publish />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
