@@ -45,13 +45,15 @@ export default function SignUp({ setUser }) {
             });
             console.log(response.data);
             console.log(response.data.newsletter);
+            setUser(response.data.token);
+
             alert("Merci pour votre message");
             navigate("/");
 
         } catch (error) {
             console.log(error.message);
             if (error.response.status === 409) {
-                setErrorMessage("Cet email a déjà un compte ! ");
+                setErrorMessage("Cet email aaaa déjà un compte ! ");
             }
         }
     };

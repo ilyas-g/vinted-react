@@ -34,6 +34,7 @@ const Login = ({ setUser }) => {
       );
       if (response.data) {
         console.log("J'ai bien réussi à me connecter");
+        console.log(response.data.token);
         setUser(response.data.token);
         navigate("/");
       }
