@@ -43,12 +43,14 @@ export default function SignUp({ setUser }) {
                 password: password,
                 newsletter: newsletter
             });
-            console.log(response.data);
-            console.log(response.data.newsletter);
-            setUser(response.data.token);
+            if (response.data) {
+                console.log("J'aaaaai bien réussi à créer un compte");
+                console.log(response.data.token);
+                setUser(response.data.token);
+                console.log(response.data.token);
 
-            alert("Merci pour votre message");
-            navigate("/");
+                navigate("/");
+            }
 
         } catch (error) {
             console.log(error.message);
