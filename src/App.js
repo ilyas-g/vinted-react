@@ -1,28 +1,54 @@
-// src/App.js
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Header from "./components/Header/Header";
+import { useState } from "react";
+// import "./App.scss";
+import Cookies from "js-cookie";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+//pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Publish from "./pages/Publish";
+
+//components
+import Header from "./components/Header/Header";
 
 function App() {
+  const [token, setToken] = useState(Cookies.get("userToken") || null);
+
+  const setUser = (tokenToCheck) => {
+    if (tokenToCheck !== null) {
+      //Action de connexion
+      console.log("Création d'un cookie userToken");
+      Cookies.set("userToken", tokenToCheck, { expires: 10 });
+    } else {
+      //action de déconnexion
+      console.log("Suppression d'un cookie userTOken");
+      Cookies.remove("userToken");
+    }
+    setToken(tokenToCheck);
+  };
+
+  //connexion / inscription
+  // setUser("387D3G3UYGUY3GUEGUYZEGGYUGUYGUYGUYGD");
+
+  //déconnexion
+  // setUser(null)
+
   return (
-    <Router>
-      <Header />
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/offer">Offer</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/offer/:offerId" element={<Offer />} />
-      </Routes>
-    </Router>
+    <div className="container">
+      <Router>
+        <Header token={token} setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/offer/:offerId" element={<Offer />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp setUser={setUser} />} />
+          <Route path="/publish" element={<Publish />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
