@@ -43,9 +43,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/offer/:offerId" element={<Offer />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<SignUp setUser={setUser} />} />
-          <Route path="/publish" element={<Publish />} />
+          <Route path="/publish" element={<Publish token={token} />} />
         </Routes>
       </Router>
     </div>
