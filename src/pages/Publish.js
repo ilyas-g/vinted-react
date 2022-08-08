@@ -14,7 +14,7 @@ export default function Publish({ token }) {
     const [price, setPrice] = useState("");
     const [exchange, setExchange] = useState(false);
 
-    const [errorMessage, setErrorMessage] = useState("");
+    const [preview, setPreview] = useState(null);
 
     const [file, setFile] = useState({});
 
@@ -24,9 +24,8 @@ export default function Publish({ token }) {
     const handleSaleArticle = async (event) => {
         try {
             event.preventDefault();
-            setErrorMessage("");
 
-            const formData = new formData();
+            const formData = new FormData();
             formData.append("title", title);
             formData.append("description", description);
             formData.append("price", price);
@@ -35,7 +34,7 @@ export default function Publish({ token }) {
             formData.append("brand", brand);
             formData.append("size", size);
             formData.append("color", color);
-            formData.append("picture", file);
+            formData.append("files", file);
 
             const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/offer/publish",
                 formData,
@@ -45,6 +44,7 @@ export default function Publish({ token }) {
                         "Content-Type": "multipart/form-data"
                     }
                 });
+            alert(JSON.stringify(response.data));
             console.log(response.data);
             navigate(`/offer/${offerId}`);
 
@@ -57,97 +57,101 @@ export default function Publish({ token }) {
         }
     };
 
-    return (token ?
-        <form onSubmit={handleSaleArticle}>
-            <div>
+    return (
+        token ?
+            <form onSubmit={handleSaleArticle}>
                 <div>
-                    <label>Image</label>
-                    <input
-                        type="file"
-                        value={title}
-                        onChange={(event) => setFile(event.target.files)}
-                    />
+                    <div>
+                        <label>Image</label>
+                        <input
+                            type="file"
+                            onChange={(event) => {
+                                setFile(event.target.files[0]);
+                                setPreview(URL.createObjectURL(event.target.files[0]));
+                            }}
+                        />
+                        <img src={preview} style={{ width: "200px" }} alt="" />
+                    </div>
+                    <div>
+                        <label>Titre</label>
+                        <input
+                            type="text"
+                            value={title}
+                            placeholder="ex: Chemise Sézane verte"
+                            onChange={(event) => setTitle(event.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Décris ton article</label>
+                        <input
+                            type="text"
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
+                        />
+                    </div>
                 </div>
                 <div>
-                    <label>Titre</label>
-                    <input
-                        type="text"
-                        value={title}
-                        placeholder="ex: Chemise Sézane verte"
-                        onChange={(event) => setTitle(event.target.value)}
-                    />
+                    <div>
+                        <label>Marque</label>
+                        <input
+                            type="text"
+                            value={brand}
+                            onChange={(event) => setBrand(event.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Taille</label>
+                        <input
+                            type="text"
+                            value={size}
+                            onChange={(event) => setSize(event.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Couleur</label>
+                        <input
+                            type="text"
+                            value={color}
+                            onChange={(event) => setColor(event.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Condition</label>
+                        <input
+                            type="text"
+                            value={condition}
+                            onChange={(event) => setCondition(event.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Lieu</label>
+                        <input
+                            type="text"
+                            value={city}
+                            onChange={(event) => setCity(event.target.value)}
+                        />
+                    </div>
                 </div>
                 <div>
-                    <label>Décris ton article</label>
-                    <input
-                        type="text"
-                        value={description}
-                        onChange={(event) => setDescription(event.target.value)}
-                    />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label>Marque</label>
-                    <input
-                        type="text"
-                        value={brand}
-                        onChange={(event) => setBrand(event.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Taille</label>
-                    <input
-                        type="text"
-                        value={size}
-                        onChange={(event) => setSize(event.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Couleur</label>
-                    <input
-                        type="text"
-                        value={color}
-                        onChange={(event) => setColor(event.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Condition</label>
-                    <input
-                        type="text"
-                        value={condition}
-                        onChange={(event) => setCondition(event.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Lieu</label>
-                    <input
-                        type="text"
-                        value={city}
-                        onChange={(event) => setCity(event.target.value)}
-                    />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label>Prix</label>
-                    <input
-                        type="text"
-                        value={price}
-                        onChange={(event) => setPrice(event.target.value)}
-                    />
-                </div>
+                    <div>
+                        <label>Prix</label>
+                        <input
+                            type="text"
+                            value={price}
+                            onChange={(event) => setPrice(event.target.value)}
+                        />
+                    </div>
 
-                <div>
-                    <input
-                        type="checkbox"
-                        value={exchange}
-                        onChange={(event) => setExchange(event.target.checked)}
-                    />
-                    <label>Je suis intéressé(e) par les échanges</label>
+                    <div>
+                        <input
+                            type="checkbox"
+                            value={exchange}
+                            onChange={(event) => setExchange(event.target.checked)}
+                        />
+                        <label>Je suis intéressé(e) par les échanges</label>
+                    </div>
                 </div>
-            </div>
-        </form>
-        : <Navigate to="/login" />
+            </form>
+            : <Navigate to="/login" />
     );
 }
