@@ -32,14 +32,20 @@ export default function Home() {
                 <h1>En cours de chargement</h1>
             ) : (
                 <>
-                    {data.offers.map((offer, index) => {
-                        return (
-                            <p key={index}><Link to={`/offer/${offer._id}`}>{offer.product_name}</Link></p>
-                        );
-                    })}
+                    <div className="container content-grid">
+                        {data.offers.map((offer, index) => {
+                            return (
+                                <div className="col" key={index}>
+                                    {/* <img src={offer.product_pictures[0].secure_url} alt={offer.product_name} /> */}
+                                    <img src={offer.product_image.secure_url} alt="" />
+                                    <p><Link to={`/offer/${offer._id}`}>{offer.product_name}</Link></p>
+                                </div>
+                            );
+                        })}
+                    </div>
+
                 </>
             )}
-
         </div>
     );
 }

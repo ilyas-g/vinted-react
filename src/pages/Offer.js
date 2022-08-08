@@ -28,16 +28,24 @@ const Offer = () => {
 
     console.log(offerId);
     return (<div className="page product">
-        <p>Offer id : {offerId}</p>
         {isLoading === true ? (
-            // Object key object value
             <h1>En cours de chargement</h1>
         ) : (
             <>
-                <p><strong>{data.product_name}</strong> - {data.product_description}</p>
-                <h2>{data.product_details[0].MARQUE}</h2>
+                <h1>{data.product_name}</h1>
+                <p>{data.product_description}</p>
+
+                <img src={data.product_image.secure_url} alt="" />
                 {data.product_details.map((detail, index) => {
-                    return <p>MAAAAAAAAAAAAAAAAAAAAAAA {detail.MARQUE}</p>;
+                    return (
+                        <div key={index}>
+
+                            <p>{detail.MARQUE}</p>
+                            <p>{detail.ÉTAT}</p>
+                            <p>{detail.COULEUR}</p>
+                            <p>{detail.EMPLACEMENT}</p>
+                        </div>
+                    );
                 })}
             </>
         )}

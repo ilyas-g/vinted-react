@@ -7,7 +7,7 @@ const Header = ({ token, setUser }) => {
     const navigate = useNavigate();
     return (
         <header className="header-component ">
-            <p>My Header</p>
+            <Link to="/"><p>My Header</p></Link>
             {token === null ? (
                 <>
                     <Link to="/signup">S'inscrire</Link>

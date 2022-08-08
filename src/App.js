@@ -1,17 +1,15 @@
 import { useState } from "react";
-// import "./App.scss";
+import "./App.css";
 import Cookies from "js-cookie";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//pages
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Publish from "./pages/Publish";
 
-//components
 import Header from "./components/Header/Header";
 
 function App() {
@@ -19,22 +17,14 @@ function App() {
 
   const setUser = (tokenToCheck) => {
     if (tokenToCheck !== null) {
-      //Action de connexion
       console.log("Création d'un cookie userToken");
       Cookies.set("userToken", tokenToCheck, { expires: 10 });
     } else {
-      //action de déconnexion
       console.log("Suppression d'un cookie userTOken");
       Cookies.remove("userToken");
     }
     setToken(tokenToCheck);
   };
-
-  //connexion / inscription
-  // setUser("387D3G3UYGUY3GUEGUYZEGGYUGUYGUYGUYGD");
-
-  //déconnexion
-  // setUser(null)
 
   return (
     <div className="container">
