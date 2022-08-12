@@ -1,11 +1,10 @@
 import { useState, useEffect, React } from 'react';
-import { Link } from "react-router-dom";
 import axios from "axios";
+import Card from '../components/card/Card';
 
 export default function Home() {
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
-
 
     useEffect(() => {
         //Avec un tableau vide en deuxième argument
@@ -35,15 +34,18 @@ export default function Home() {
                     <div className="container content-grid">
                         {data.offers.map((offer, index) => {
                             return (
-                                <div className="col" key={index}>
-                                    {/* <img src={offer.product_pictures[0].secure_url} alt={offer.product_name} /> */}
-                                    <img src={offer.product_image.secure_url} alt="" />
-                                    <p><Link to={`/offer/${offer._id}`}>{offer.product_name}</Link></p>
-                                </div>
+                                <>
+                                    <div className="col" key={index}>
+                                        <Card
+                                            name={offer.product_name}
+                                            imgSrc={offer.product_image.secure_url}
+                                            to={`/offer/${offer._id}`}
+                                        />
+                                    </div>
+                                </>
                             );
                         })}
                     </div>
-
                 </>
             )}
         </div>
